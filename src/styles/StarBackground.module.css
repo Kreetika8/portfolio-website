@@ -1,0 +1,39 @@
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.stars1, .stars2, .stars3 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent  url('../images/BG2.jpg') repeat top center;
+  animation: moveStars 200s linear infinite;
+  opacity: 0.5;
+}
+
+.stars2 {
+  background-image: url('../images/BG1.jpg');
+  animation-duration: 300s;
+  opacity: 0.3;
+}
+
+.stars3 {
+  background-image: url('../images/BG2.jpg');
+  animation-duration: 400s;
+  opacity: 0.2;
+}
+
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}

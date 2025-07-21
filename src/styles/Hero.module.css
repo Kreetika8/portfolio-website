@@ -1,0 +1,462 @@
+
+.hero {
+  height: 100vh; /* or keep calc(100vh - 50px) if you have a 50px header */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff5eb;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+[data-theme="dark"] .hero{
+background: linear-gradient(135deg, #F6FCDF 0%, #1A1A19 100%);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--hero-overlay, rgba(0, 0, 0, 0.3));
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%; /* Make content fill hero height */
+  box-sizing: border-box;
+  padding-top: 20vh; /* Add top padding to push content down from top */
+
+}
+
+.textAndViewer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.textSection {
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  background: #192965;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideInLeft 1s ease-out;
+  line-height: 1.2;
+}
+[data-theme="dark"] .heading{
+   background: #F6E0B3;
+   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wave3d {
+  display: inline-block;
+  font-size: 2.5em;
+  transform-origin: 70% 70%;
+  animation: wave 3s ease-in-out infinite;
+  color: inherit;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: rotate(0deg) scale(1) rotateY(0deg);
+  }
+  25% {
+    transform: rotate(20deg) scale(1.1) rotateY(10deg);
+  }
+  50% {
+    transform: rotate(-10deg) scale(1.05) rotateY(-5deg);
+  }
+  75% {
+    transform: rotate(25deg) scale(1.15) rotateY(15deg);
+  }
+}
+
+.wave3d:hover {
+  animation: waveHover 0.8s ease-in-out;
+}
+
+@keyframes waveHover {
+  0% { transform: rotate(0deg) scale(1) rotateY(0deg); }
+  25% { transform: rotate(30deg) scale(1.2) rotateY(20deg); }
+  50% { transform: rotate(-20deg) scale(1.1) rotateY(-10deg); }
+  75% { transform: rotate(35deg) scale(1.25) rotateY(25deg); }
+  100% { transform: rotate(0deg) scale(1) rotateY(0deg); }
+}
+
+.typing {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--hero-typing-color, #e0e0e0);
+  margin-bottom: 1.5rem;
+  display: block;
+  min-height: 60px;
+  animation: slideInRight 1s ease-out 0.3s both;
+}
+
+.subtext {
+  font-size: 1.2rem;
+  color: var(--hero-subtext-color, #b0b0b0);
+  margin-bottom: 2rem;
+  font-weight: 400;
+  animation: fadeInUp 1s ease-out 0.6s both;
+  line-height: 1.6;
+}
+
+.scrollBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #F6FCDF;
+  color:  #192965;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--hero-btn-border, rgba(255, 255, 255, 0.2));
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease-out 0.9s both;
+}
+[data-theme="dark"] .scrollBtn {
+  background: #1A1A19;
+  color:  #FFF5EB;
+}
+.scrollBtn:hover {
+  background: #4E4E4E;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px var(--hero-btn-shadow, rgba(0, 0, 0, 0.3));
+  color: #FFF5EB
+}
+
+.photoSection {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.photoContainer {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--hero-photo-border, rgba(255, 255, 255, 0.3));
+  box-shadow: 0 20px 40px var(--hero-photo-shadow, rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.photoContainer:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px var(--hero-photo-shadow-hover, rgba(0, 0, 0, 0.4));
+}
+
+.profilePhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profilePhoto:hover {
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1440px) {
+  .content {
+    padding: 0 40px;
+    padding-top: 22vh; /* Add top padding to push content down from top */
+    
+  }
+  
+  .textAndViewer {
+    gap:0 40px;
+  }
+  
+  .heading {
+    font-size: 2.5rem;
+  }
+  
+  .wave3d {
+    font-size: 2.3rem;
+  }
+  
+  .typing {
+    font-size: 1.4rem;
+  }
+  
+  .photoContainer {
+    width: 300px;
+    height: 300px;
+  }
+}
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .content {
+    padding: 0 40px;
+    align-items: flex-start;
+    padding-top: 22vh; /* Add top padding to push content down from top */
+  }
+  
+  .textAndViewer {
+    gap: 40px;
+  }
+  
+  .heading {
+    font-size: 2.1rem;
+  }
+  
+  .wave3d {
+    font-size: 2rem;
+  }
+  
+  .typing {
+    font-size: 1.3rem;
+  }
+  
+  .photoContainer {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .hero {
+    min-height: calc(100vh - 80px);
+    padding: 0 40px;
+    padding-bottom:7vh 
+
+  }
+  
+  .content {
+    padding: 0 40px;
+    align-items: center;
+  }
+  
+  .textAndViewer {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .textSection {
+    text-align: center;
+    order: 2;
+  }
+  
+  .photoSection {
+    order: 1;
+  }
+  
+  .headingWrapper {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+  }
+  
+  .wave3d {
+    font-size: 2em;
+  }
+  
+  .typing {
+    font-size: 1.4rem;
+    min-height: 50px;
+  }
+  
+  .subtext {
+    font-size: 1rem;
+  }
+  
+  .photoContainer {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 20px 0;
+      height:100vh;
+  }
+
+  .content {
+    padding: 0 15px;
+    padding-bottom:7vh
+  }
+  
+  .textAndViewer {
+    gap: 20px;
+  }
+  
+  .headingWrapper {
+    gap: 6px;
+  }
+  
+  .heading {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+  
+  .wave3d {
+    font-size: 2rem;
+  }
+  
+  .typing {
+    font-size: 1.2rem;
+    min-height: 40px;
+  }
+  
+  .subtext {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .scrollBtn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .photoContainer {
+    width: 220px;
+    height: 220px;
+    border-width: 3px;
+  }
+}
+
+/* Small mobile phones */
+@media (max-width: 360px) {
+  .heading {
+    font-size: 1.8rem;
+  }
+  
+  .wave3d {
+    font-size: 1.6em;
+  }
+  
+  .typing {
+    font-size: 1.1rem;
+  }
+  
+  .subtext {
+    font-size: 0.85rem;
+  }
+  
+  .photoContainer {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 0;
+  }
+  
+  .textAndViewer {
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .textSection {
+    text-align: left;
+    order: 1;
+  }
+  
+  .photoSection {
+    order: 2;
+  }
+  
+  .photoContainer {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .heading {
+    font-size: 2.2rem;
+  }
+  
+  .typing {
+    font-size: 1.3rem;
+  }
+}
