@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/solid";
 import {
   ChevronRight,
   Calendar,
@@ -11,7 +12,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import styles from "@/styles/Aboutme.module.css";
-import Navbar from "../components/navBar";
 
 import Lottie from "lottie-react";
 
@@ -62,22 +62,25 @@ const milestones: Milestone[] = [
     icon: "🎓",
     title: "Education",
     color: "milestoneEducation",
-    position: { top: "14%", left: "30%" },
+    position: { top: "14%", left: "25%" },
     details: {
       title: "Computer Science Journey",
       date: "2022 – 2026",
       description:
         "Currently in my 8th semester, pursuing Bachelor's in Computer Science with a focus on software development and emerging technologies.",
       skills: [
-        "Python",
+        "HTML CSS",
         "JavaScript",
-        "React",
-        "Data Structures",
-        "Algorithms",
+        "SQL",
+        "API Testing",
+        "E2E software Testing",
+        "Postman",
+        "JMeter",
+        "Cypress",
       ],
       highlights: [
         "Bachelor's in Computer Science (2022-2026)",
-        "Higher Secondary in Management (2019-2021)",
+        "Higher School  (2019-2021)",
         "Currently in 8th Semester",
       ],
       animation: "education",
@@ -88,12 +91,12 @@ const milestones: Milestone[] = [
     icon: "💼",
     title: "Internship",
     color: "milestoneInternship",
-    position: { top: "35%", left: "65%" },
+    position: { top: "42%", left: "65%" },
     details: {
       title: "QA Engineer at Intuji",
       date: "May 2025 – Present",
       description:
-        "Leading comprehensive testing initiatives with focus on automation and quality assurance processes.",
+        "Gained hands-on experience in software quality assurance with a focus on both manual and automated testing. Learning to apply industry best practices to ensure product reliability and performance.",
       skills: [
         "Cypress",
         "Test Automation",
@@ -102,10 +105,10 @@ const milestones: Milestone[] = [
         "QA Processes",
       ],
       highlights: [
-        "Developed automated test scripts",
-        "Created comprehensive test plans",
-        "Improved bug detection by 40%",
-        "Led testing team initiatives",
+        "Built and executed test cases for real-world projects",
+        "Practiced writing automated tests using Cypress",
+        "Learned effective bug tracking and reporting",
+        "Collaborated with developers to understand QA workflows",
       ],
       animation: "internship",
     },
@@ -115,18 +118,17 @@ const milestones: Milestone[] = [
     icon: "🏆",
     title: "Achievement",
     color: "milestoneAchievement",
-    position: { top: "65%", left: "35%" },
+    position: { top: "70%", left: "25%" },
     details: {
-      title: "Smart Home Energy Project",
-      date: "March 2025",
+      title: "Academic & Project Achievements",
+      date: "2022 – 2025",
       description:
-        "Innovative system for visualizing and analyzing home energy consumption with predictive modeling capabilities.",
-      skills: ["Python", "Tableau", "Machine Learning", "Data Analysis", "IoT"],
+        "Recognized for academic excellence and project innovation throughout my undergraduate journey.",
+      skills: ["Academic Excellence", "Innovation", "Dean’s List"],
       highlights: [
-        "Reduced energy consumption by 25%",
-        "Implemented predictive modeling",
-        "Created interactive dashboards",
-        "Presented at tech conference",
+        "Best Innovative Project Award – IIMS Project Showcase 2025 (Jalsewa App)",
+        "Merit Scholarship Award – Based on academic scores",
+        "Dean’s List – 5 consecutive semesters for academic excellence",
       ],
       animation: "achievement",
     },
@@ -202,8 +204,8 @@ export default function AboutMe() {
   };
 
   return (
-    <div className={styles.aboutMeContainer}>
-      <Navbar />
+    <div id="aboutMe" className={styles.aboutMeContainer}>
+      {/* <Navbar /> */}
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
@@ -229,29 +231,6 @@ export default function AboutMe() {
       <section className={styles.journeySection}>
         <div className={styles.journeyContainer}>
           <div className={styles.journeyMap}>
-            {/* Animated Path */}
-            <svg className={styles.journeyPath}>
-              <defs>
-                <linearGradient
-                  id="pathGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="100%"
-                >
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="50%" stopColor="#8b5cf6" />
-                  <stop offset="100%" stopColor="#06b6d4" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M 200 150 Q 400 200 500 300 Q 600 400 300 450"
-                stroke="url(#pathGradient)"
-                strokeWidth="3"
-                fill="none"
-                className={styles.animatedPath}
-              />
-            </svg>
 
             {/* Milestones */}
             {milestones.map((milestone, index) => (
@@ -403,7 +382,10 @@ export default function AboutMe() {
               {/* Navigation */}
               <div className={styles.modalNavigation}>
                 <button onClick={prevMilestone} className={styles.navButton}>
-                  <ArrowRight className="w-4 h-4 rotate-180" />
+                  <ArrowLeftIcon
+                    style={{ width: "20px", height: "20px" }}
+                    className="w-4 h-4"
+                  />
                   Previous
                 </button>
 
@@ -421,7 +403,10 @@ export default function AboutMe() {
 
                 <button onClick={nextMilestone} className={styles.navButton}>
                   Next
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRightIcon
+                    style={{ width: "20px", height: "20px" }}
+                    className="w-4 h-4"
+                  />
                 </button>
               </div>
             </div>

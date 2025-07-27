@@ -1,51 +1,71 @@
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-
 import { useState } from "react";
-import styles from "../styles/Contact.module.css";
-import Navbar from "../components/navBar";
+import styles from "../../styles/Contact.module.css";
+// import Navbar from "../navBar";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    subject: "",    
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    // Clear error when user starts typing
+    if (error) setError("");
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Clear form and success message after 3 seconds
+        setTimeout(() => {
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setIsSubmitted(false);
+        }, 7000);
+      } else {
+        setError(data.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Network error. Please check your connection and try again.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-
-      // Delay clearing the form data
-      setTimeout(() => {
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setIsSubmitted(false);
-      }, 3000);
-    }, 1500);
+    }
   };
 
   return (
     <div className={styles.container}>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Get In Touch</h1>
+          <h1 className={styles.title}>Let’s Connect</h1>
           <p className={styles.subtitle}>
-            Have a project in mind? Let's discuss how we can work together.
+            From ideas to opportunities, let's talk about it.
           </p>
         </div>
 
@@ -105,6 +125,12 @@ export default function Contact() {
                 <label className={styles.label}>Message</label>
               </div>
 
+              {error && (
+                <div className={styles.errorMessage}>
+                  {error}
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -123,7 +149,7 @@ export default function Contact() {
                 <div className={styles.overlay}>
                   <div className={styles.successPopup}>
                     <span className={styles.checkmark}>✓</span>
-                    Message sent successfully! I'll get back to you soon.
+                    Got it! Now it’s my turn. I’ll reply soon. 😊
                   </div>
                 </div>
               )}
@@ -133,7 +159,7 @@ export default function Contact() {
           {/* Contact Info */}
           <div className={styles.infoSection}>
             <div className={styles.contactInfo}>
-              <h3 className={styles.infoTitle}>Let's Connect</h3>
+              <h3 className={styles.infoTitle}>Reach Out Anytime</h3>
               <p className={styles.infoText}>
                 I'm always interested in new opportunities and exciting
                 projects.
@@ -178,11 +204,6 @@ export default function Contact() {
                     <FaGithub className={styles.socialIcon} />
                     GitHub
                   </a>
-
-                  {/* <a href="#" className={styles.socialLink}>
-                    <span className={styles.socialIcon}>🐦</span>
-                    Twitter
-                  </a> */}
                 </div>
               </div>
             </div>
