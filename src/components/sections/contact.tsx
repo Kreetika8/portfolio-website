@@ -7,7 +7,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",    
+    subject: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,10 +29,11 @@ export default function Contact() {
     setError("");
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      // const response = await fetch('/api/contact', {
+      const response = await fetch("portfolio-git-main-kreetika-s-projects.vercel.app/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -47,11 +48,11 @@ export default function Contact() {
           setIsSubmitted(false);
         }, 7000);
       } else {
-        setError(data.error || 'Something went wrong. Please try again.');
+        setError(data.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error('Error:', error);
-      setError('Network error. Please check your connection and try again.');
+      console.error("Error:", error);
+      setError("Network error. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -125,11 +126,7 @@ export default function Contact() {
                 <label className={styles.label}>Message</label>
               </div>
 
-              {error && (
-                <div className={styles.errorMessage}>
-                  {error}
-                </div>
-              )}
+              {error && <div className={styles.errorMessage}>{error}</div>}
 
               <button
                 type="submit"
