@@ -161,7 +161,7 @@ export default function Hero() {
             <div className={styles.photoSection}>
               <div className={styles.photoContainer}>
                 <Image
-                  src="/images/DP.jpg"
+                  src="/resume/DP.JPG"
                   alt="Kritika - QA Engineer"
                   width={400}
                   height={400}

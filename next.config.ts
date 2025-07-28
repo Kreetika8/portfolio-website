@@ -3,10 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
-    ignoreDuringBuilds: true, 
+    ignoreDuringBuilds: true,
   },
+  // output: "export",
   images: {
-    unoptimized: true,        
+    unoptimized: true,
   },
 };
 
